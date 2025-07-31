@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planeta para mi Novia</title>
+  <style>
+    body {
+      height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+      background: url('image copy 2.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+    }
+
+    #boton, #boton2 {
+      position: absolute;
+      top: 15px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #f48fb1, #d81b60);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      box-shadow: 0 0 10px #d81b60, 0 0 20px #f48fb1;
+      transition: all 0.3s ease;
+      z-index: 10;
+      user-select: none;
+    }
+
+    #boton:hover, #boton2:hover {
+      background: linear-gradient(135deg, #f06292, #ad1457);
+      box-shadow: 0 0 20px #f06292, 0 0 30px #ad1457;
+      transform: translateY(-2px);
+    }
+
+    #boton:active, #boton2:active {
+      transform: translateY(1px);
+      box-shadow: 0 0 8px #ad1457;
+    }
+
+    #boton {
+      right: 15px;
+    }
+
+    #boton2 {
+      left: 15px;
+    }
+
+    @media (max-width: 400px) {
+      #boton, #boton2 {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+      }
+    }
+
+    #mensaje {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      max-width: 250px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 20;
+    }
+
+    /* Planetario y planeta y anillo se mantienen igual */
+
+    .planetario {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .planeta {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at 40% 40%, #caa472, #8b5a2b);
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    .anillo {
+      width: 300px;
+      height: 100px;
+      border: 10px solid rgba(200, 200, 200, 0.6);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(25deg);
+      z-index: 0;
+      filter: blur(0.5px);
+    }
+
+    .asteroide {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: gray;
+      border-radius: 50%;
+      animation: caer 4s linear forwards;
+      box-shadow: 0 0 10px #999;
+    }
+
+    @keyframes caer {
+      0% {
+        top: -40px;
+        opacity: 1;
+      }
+      80% {
+        top: 50%;
+        transform: translateY(-50%) scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        top: 55%;
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+
+    .explosion {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, red, orange, transparent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: explotar 1s ease-out forwards;
+    }
+
+    @keyframes explotar {
+      0% {
+        opacity: 1;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="boton">Te amo ❤️</button>
+  <button id="boton2">Ir a Mensaje</button>
+  <div id="mensaje"></div>
+
+  <script>
+    function crearAsteroide() {
+      const asteroide = document.createElement('div');
+      asteroide.classList.add('asteroide');
+
+      const centroX = window.innerWidth / 2;
+      const rango = 100;
+      const posicionX = centroX + (Math.random() * rango * 2) - rango;
+
+      asteroide.style.left = posicionX + 'px';
+      document.body.appendChild(asteroide);
+
+      setTimeout(() => {
+        mostrarExplosion(asteroide);
+        asteroide.remove();
+      }, 4000);
+    }
+
+    function mostrarExplosion(asteroide) {
+      const explosion = document.createElement('div');
+      explosion.classList.add('explosion');
+      explosion.style.left = asteroide.style.left;
+      explosion.style.top = 'calc(50% + 90px)';
+      document.body.appendChild(explosion);
+      setTimeout(() => explosion.remove(), 1000);
+    }
+
+    setTimeout(() => {
+      setInterval(crearAsteroide, 1200);
+    }, 5000);
+
+    const boton = document.getElementById('boton');
+    const mensaje = document.getElementById('mensaje');
+
+    boton.addEventListener('click', () => {
+    mensaje.textContent = 'Mi amor, hoy celebramos la magia que tú traes a mi vida. Gracias por ser mi compañera, mi alegría y mi inspiración diaria. ¡Feliz Día de la Novia! 💖';
+
+      mensaje.style.opacity = '1';
+
+      setTimeout(() => {
+        mensaje.style.opacity = '0';
+      }, 5000);
+    });
+
+    const boton2 = document.getElementById('boton2');
+    boton2.addEventListener('click', () => {
+      window.location.href = 'Mensaje.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Día de la Novia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Georgia&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100vh;
+      font-family: 'Georgia', serif;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .carta {
+      position: relative;
+      background: #111;
+      border-radius: 20px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 30px #f06ca0, 0 0 60px #f06ca0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: #f06ca0;
+      margin-bottom: 0.2rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #f06ca0;
+    }
+
+    h2 {
+      font-size: 1rem;
+      color: #f8a8c1;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      text-shadow: 0 0 6px #f8a8c1;
+    }
+
+    img {
+      width: 70%;
+      max-width: 220px;
+      height: auto;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #f06ca0;
+      box-shadow: 0 0 20px #f06ca0;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 0 30px #f86ea0;
+      cursor: pointer;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #f9c1d9;
+      text-shadow: 0 0 8px #f48fb1;
+    }
+
+    /* ❤️ Corazones en forma de emoji cayendo */
+    .emoji-heart {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      animation: fall 7s linear infinite;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="carta">
+    <h1>FELIZ DÍA DE LA NOVIA</h1>
+    <h2>1 de agosto</h2>
+    <img src="image copy 3.png" alt="Rosas" />
+    <p>
+      Mi amor, aunque a veces el día se nuble y las palabras se escapen,  
+      quiero que recuerdes que mi corazón late solo por ti.  
+      Eres la calma que calma mis tormentas y la sonrisa que ilumina mis noches.  
+      Descansa sabiendo que siempre estaré a tu lado, amándote con toda mi ternura.  
+      Que esta noche dulce te envuelva en paz y sueños llenos de nuestro amor. 💖✨
+    </p>
+  </div>
+
+  <!-- Script de corazones ❤️ -->
+  <script>
+    const cantidad = 40;
+
+    for (let i = 0; i < cantidad; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'emoji-heart';
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+      heart.style.animationDelay = (Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
